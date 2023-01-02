@@ -1,0 +1,38 @@
+Algorithm: 
+Take care of some base cases, i.e when the given number is 0 or 1.
+Create some variables, lowerbound l = 0, upperbound r = n, where n is the given number, mid and ans to store the answer.
+Run a loop until l <= r , the search space vanishes
+Check if the square of mid (mid = (l + r)/2 ) is less than or equal to n, If yes then search for a larger value in second half of search space, i.e l = mid + 1, update ans = mid
+Else if the square of mid is more than n then search for a smaller value in first half of search space, i.e r = mid - 1
+Print the value of answer ( ans)
+
+Complexity Analysis: 
+Time complexity: O(log n). 
+The time complexity of the binary search is O(log n).
+Space Complexity: O(1). 
+Constant extra space is needed.
+class Solution
+{
+     long floorSqrt(long x)
+	 {
+	     if(x==0 || x==1) return x;
+		long start=1,end=x, ans=0;
+		while(start<=end){
+		    long mid=(start+end)/2;
+		    
+		    if(mid*mid==x)
+		        return (long)mid;
+		  
+		    if(mid*mid<x){
+		        start=mid+1;
+		        ans=mid;
+		    }
+		    else{
+		        end=mid-1;
+		    }
+		        
+		    
+		}
+		return (long)ans;
+	 }
+}
