@@ -1,0 +1,81 @@
+
+//User function Template for Java
+// If there is no space issue , then use hashmap .. it takes
+//Time Complexity: O(n), One traversal of the array is needed, so the time complexity is linear.
+//Auxiliary Space: O(n), Since a hashmap requires linear space.
+
+
+
+for more optimized:
+
+Time Complexity: O(nlogn), Sorting requires O(n log n) time complexity.
+Auxiliary Space: O(1), As no extra space is required.
+// class MajorityElement 
+// {
+//     private static void findMajority(int[] arr) 
+//     {
+//         HashMap<Integer,Integer> map = new HashMap<Integer, Integer>();
+
+//         for(int i = 0; i < arr.length; i++) {
+//             if (map.containsKey(arr[i])) {
+//                     int count = map.get(arr[i]) +1;
+//                     if (count > arr.length /2) {
+//                         System.out.println("Majority found :- " + arr[i]);
+//                         return;
+//                     } else
+//                         map.put(arr[i], count);
+
+//             }
+//             else
+//                 map.put(arr[i],1);
+//             }
+//             System.out.println(" No Majority element");
+//     }
+
+ 
+//     /* Driver program to test the above functions */
+//     public static void main(String[] args) 
+//     {
+//         int a[] = new int[]{2,2,2,2,5,5,2,3,3};
+        
+//         findMajority(a);
+//     }
+// }
+
+class Solution
+{
+    static int majorityElement(int arr[], int size)
+    {
+        Arrays.sort(arr); // [2,2,3,4]
+        int n =size;
+        if(size==1) return arr[0];
+        int count=1,max_ele=-1;
+        int temp=arr[0],ele=0,f=0; // temp =2
+        
+        for(int i=1;i<n;i++){
+            // Increase the count if same element occurs
+            if(temp==arr[i]){  //2==2 , count =2 | 3==2 | 2==4
+                count++;
+            }else{    // count =1 , temp =3 | count =1 , temp =4
+                count=1;
+                temp=arr[i];
+            }
+            // Sets maximum count and stores
+        // maximum occurred element so far
+        // if maximum count becomes greater
+        // than n/2 it breaks out setting
+        // the flag
+            
+            if(max_ele<count){  // -1<2 // 2<1  // 2<1
+                max_ele=count;  //max_ele =2
+                ele=arr[i];    //ele=2
+                if(max_ele>(n/2)){ 
+                    f=1;
+                    break;
+                }
+            }
+          }
+          return f==1?ele:-1;
+
+    }
+}
