@@ -1,0 +1,48 @@
+Given a positive integer N, return its corresponding column title as it would appear in an Excel sheet.
+For N =1 we have column A, for 27 we have AA and so on.
+
+Note: The alphabets are all in uppercase.
+
+Example 1:
+
+Input:
+N = 51
+Output: AY
+
+Time Complexity: O(log26n), as we are using recursion and in each recursive call, we decrement by floor division of 26.
+
+Auxiliary Space: O(1), as we are not using any extra space.
+
+//User function Template for Java
+
+class Solution {
+      String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public String excelColumn(int N){
+        
+        //  Your code here
+         
+
+        
+        if(N<26)
+         return Character.toString(alpha.charAt(N-1));
+        else{
+            int q=Math.floorDiv(N,26);
+            int r=N%26;
+            
+            if(r==0){
+                if(q==1){
+                  return  Character.toString(alpha.charAt((26+r-1)%26));  
+                }
+                else{
+                    return excelColumn(q-1)+ 
+               Character.toString(alpha.charAt((26+r-1)%26));
+                }
+              
+            }
+            else
+               return excelColumn(q)+ 
+               Character.toString(alpha.charAt((26+r-1)%26));
+        } 
+        
+    }
+}
