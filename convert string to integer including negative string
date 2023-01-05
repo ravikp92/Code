@@ -1,0 +1,21 @@
+The function takes a string(str) as argument and converts it to an integer and returns it.
+class Solution
+{
+    int atoi(String str) {
+	    char[] chr = str.toCharArray();
+	    int i=0;
+	    int sign=1;
+	    int res=0;
+	    if(chr[0]=='-'){
+	        sign=-1;
+	        i++;
+	    }
+	    for(;i<chr.length;i++){
+	        if(Character.isDigit(chr[i]))
+	         res=res*10+chr[i]-'0';
+	        else 
+	        return -1;
+	    }
+	    return sign*res;
+    }
+}
