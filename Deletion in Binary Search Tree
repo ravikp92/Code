@@ -1,0 +1,54 @@
+Time Complexity: O(h) ,where h is the height of the BST. 
+Auxiliary Space: O(1)
+
+class Tree {
+    // Function to delete a node from BST.
+    public static Node deleteNode(Node root, int X) {
+        
+        return deletekey(root,X);
+    }
+    
+    static Node deletekey(Node root, int x){
+        
+        if(root==null) return root;
+        
+        if(root.data>x){
+            root.left=deletekey(root.left,x);
+            return root;
+        }
+        else if (root.data<x){
+            root.right=deletekey(root.right,x);
+            return root;
+        }
+        
+        if(root.left==null){
+            Node temp=root.right;
+            return temp;
+        }
+        else if(root.right==null){
+            Node temp=root.left;;
+            return temp;
+        }
+        
+        else{
+            
+            Node parent=root;
+            Node child=root.right;
+            
+            while(child.left!=null){
+                parent=child;
+                child=child.left;
+            }
+            
+            if(parent!=root){
+                parent.left=child.right;
+            }else{
+                parent.right=child.right;
+            }
+            
+            root.data=child.data;
+        }
+        return root;
+        
+       
+    }
