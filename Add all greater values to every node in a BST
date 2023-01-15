@@ -1,0 +1,31 @@
+Time Complexity: O(n). 
+As this problem uses an in-order tree traversal technique
+Auxiliary Space: O(1). 
+As no data structure has been used for storing values.
+
+class Solution{
+    
+    class Sum{
+        int sum=0;
+    }
+    // modify the BST and return its root
+    public Node modify(Node root)
+    {
+        
+        Sum s=new Sum();
+        modifyUtil(root,s);
+        
+        return root;
+        
+    }
+    
+    void modifyUtil(Node root, Sum s){
+        if(root==null) return;
+        
+        modifyUtil(root.right,s);
+        s.sum=s.sum+root.data;
+        root.data=s.sum;
+        modifyUtil(root.left,s);
+    }
+    
+}
