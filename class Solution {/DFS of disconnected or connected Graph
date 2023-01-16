@@ -1,0 +1,55 @@
+
+
+Complexity Analysis: 
+
+Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph.
+Space Complexity: O(V), since an extra visited array of size V is required.
+
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        
+        boolean visited[]=new boolean[V];
+        ArrayList<Integer> res=new ArrayList<Integer>();
+        for(int i=0;i<V;i++){
+            if(!visited[i]){
+                DFSUtil(i,adj,res,visited);
+            }
+        }
+        return res;
+        
+    }
+    
+    public static void DFSUtil(int ele, ArrayList<ArrayList<Integer>> adj,
+    ArrayList<Integer> res,boolean visited[]){
+        visited[ele]=true;
+        res.add(ele);
+        
+        Iterator<Integer> i =adj.get(ele).listIterator();
+        while(i.hasNext()){
+            int side=i.next();
+            if(!visited[side]){
+                DFSUtil(side,adj,res,visited);
+            }
+        }
+    }
+}
+
+
+In case we need to count number of disconnected graph,
+
+just add count in below;
+ public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        
+        boolean visited[]=new boolean[V];
+        int count=0;
+        ArrayList<Integer> res=new ArrayList<Integer>();
+        for(int i=0;i<V;i++){
+            if(!visited[i]){
+                DFSUtil(i,adj,res,visited);
+                count++;
+            }
+        }
+        return res;
+        
+    }
